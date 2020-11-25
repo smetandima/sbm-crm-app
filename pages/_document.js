@@ -1,13 +1,7 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document'
-import { useSelector } from 'react-redux'
 
 class MyDocument extends Document {
 
-  static async getInitialProps(ctx) {
-    const initialProps = await Document.getInitialProps(ctx)
-    return { ...initialProps }
-  }
-  
   render() {
     return (
       <Html>
@@ -29,11 +23,8 @@ class MyDocument extends Document {
           />
           
           <script src="js/lib/jquery.min.js"></script>
-          <script src="js/lib/owl.carousel.min.js"></script>
           <script src="js/lib/apexcharts.min.js"></script>
           <script src="js/lib/jquery.magnific-popup.min.js"></script>
-          <script src="js/app.js"></script>
-          <script src="js/charts.js"></script>
         </Head>
         <body>
           <Main />
