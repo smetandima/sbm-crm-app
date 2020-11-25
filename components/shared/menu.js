@@ -53,7 +53,7 @@ const Menu = () => {
                   <MenuLink  href="/notifications" text="Notifications" icon="icon-notification" counter="2" />
                   <MenuLink  href="/comments" text="Comments" icon="icon-chat" counter="20" /> */}
                 </div>
-              </div>
+              </div> 
             </div>
             <div className="sidebar__profile">
               <div className="sidebar__details" style={{ cursor: 'pointer' }}>
