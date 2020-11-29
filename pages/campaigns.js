@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import Layout from '../components/layout'
-
+import Header from '../components/shared/header'
 const Campaigns = () => {
 
   return (
@@ -8,130 +8,21 @@ const Campaigns = () => {
       <Layout>
         <div className="page__wrapper">
           <div className="page__center">
-            <div className="page__row page__row_head page__row_border">
-              <div className="page__col">
-                <div className="page__hello h5">Hi David,</div>
-                <div className="page__welcome h2">Campaigns</div>
-              </div>
-              <div className="page__col">
-                <div className="header"><button className="header__burger" />
-                  <div className="search">
-                    <div className="search__field"><input className="search__input" type="text" placeholder="Search" /><button className="search__toggle"><svg className="icon icon-search">
-                          <use xlinkHref="img/sprite.svg#icon-search" />
-                        </svg><svg className="icon icon-close">
-                          <use xlinkHref="img/sprite.svg#icon-close" />
-                        </svg></button></div>
-                    <div className="search__result">
-                      <div className="search__info caption-sm">Recent Searches</div>
-                      <div className="search__list"><a className="search__item" href="#">
-                          <div className="search__preview bg-pink"><img className="search__pic" src="img/figure-1.png" /></div>
-                          <div className="search__text">Earning by items<svg className="icon icon-arrow-right">
-                              <use xlinkHref="img/sprite.svg#icon-arrow-right" />
-                            </svg></div>
-                        </a><a className="search__item" href="#">
-                          <div className="search__preview bg-yellow"><img className="search__pic" src="img/figure-4.png" /></div>
-                          <div className="search__text">This month Statements<svg className="icon icon-arrow-right">
-                              <use xlinkHref="img/sprite.svg#icon-arrow-right" />
-                            </svg></div>
-                        </a><a className="search__item" href="#">
-                          <div className="search__preview bg-blue-light"><img className="search__pic" src="img/figure-3.png" /></div>
-                          <div className="search__text">How many sales I got…<svg className="icon icon-arrow-right">
-                              <use xlinkHref="img/sprite.svg#icon-arrow-right" />
-                            </svg></div>
-                        </a></div><button className="search__btn btn btn_purple btn_wide">Advance Search</button>
-                    </div>
-                  </div><button className="header__search"><svg className="icon icon-search">
-                      <use xlinkHref="img/sprite.svg#icon-search" />
-                    </svg></button>
-                  <div className="notifications"><button className="notifications__open"><svg className="icon icon-bell">
-                        <use xlinkHref="img/sprite.svg#icon-bell" />
-                      </svg><span className="notifications__counter">2</span></button>
-                    <div className="notifications__wrap">
-                      <div className="notifications__info h6">Recent Notification</div>
-                      <div className="notifications__list"><a className="notifications__item" href="notifications">
-                          <div className="notifications__ava"><img className="notifications__pic" src="img/ava-1.png" />
-                            <div className="notifications__status bg-blue"><img className="notifications__pic" src="img/chat.svg" /></div>
-                          </div>
-                          <div className="notifications__details">
-                            <div className="notifications__line">
-                              <div className="notifications__user caption">Sarah Saunders</div>
-                              <div className="notifications__time caption">8h</div>
-                            </div>
-                            <div className="notifications__text caption-sm">Commented on <span className="notifications__project">Collab Design</span></div>
-                          </div>
-                        </a><a className="notifications__item" href="notifications">
-                          <div className="notifications__ava"><img className="notifications__pic" src="img/ava-1.png" />
-                            <div className="notifications__status bg-green"><img className="notifications__pic" src="img/bag.svg" /></div>
-                          </div>
-                          <div className="notifications__details">
-                            <div className="notifications__line">
-                              <div className="notifications__user caption">Glenn Greer</div>
-                              <div className="notifications__time caption">12h</div>
-                            </div>
-                            <div className="notifications__text caption-sm">Just pushaded <span className="notifications__project">Sapiens Illustration</span></div>
-                          </div>
-                        </a><a className="notifications__item" href="notifications">
-                          <div className="notifications__ava"><img className="notifications__pic" src="img/ava-1.png" />
-                            <div className="notifications__status bg-purple"><img className="notifications__pic" src="img/message.svg" /></div>
-                          </div>
-                          <div className="notifications__details">
-                            <div className="notifications__line">
-                              <div className="notifications__user caption">Sarah Saunders</div>
-                              <div className="notifications__time caption">14h</div>
-                            </div>
-                            <div className="notifications__text caption-sm">Sent you a message 📪 </div>
-                          </div>
-                        </a><a className="notifications__item" href="notifications">
-                          <div className="notifications__ava"><img className="notifications__pic" src="img/ava-1.png" />
-                            <div className="notifications__status bg-red"><img className="notifications__pic" src="img/heart.svg" /></div>
-                          </div>
-                          <div className="notifications__details">
-                            <div className="notifications__line">
-                              <div className="notifications__user caption">Sarah Saunders</div>
-                              <div className="notifications__time caption">21h</div>
-                            </div>
-                            <div className="notifications__text caption-sm">Liked <span className="notifications__project">Folio Agency</span></div>
-                          </div>
-                        </a><a className="notifications__item" href="notifications">
-                          <div className="notifications__ava"><img className="notifications__pic" src="img/ava-1.png" />
-                            <div className="notifications__status bg-blue"><img className="notifications__pic" src="img/chat.svg" /></div>
-                          </div>
-                          <div className="notifications__details">
-                            <div className="notifications__line">
-                              <div className="notifications__user caption">Sarah Saunders</div>
-                              <div className="notifications__time caption">8h</div>
-                            </div>
-                            <div className="notifications__text caption-sm">Commented on <span className="notifications__project">Collab Design</span></div>
-                          </div>
-                        </a><a className="notifications__item" href="notifications">
-                          <div className="notifications__ava"><img className="notifications__pic" src="img/ava-1.png" />
-                            <div className="notifications__status bg-green"><img className="notifications__pic" src="img/bag.svg" /></div>
-                          </div>
-                          <div className="notifications__details">
-                            <div className="notifications__line">
-                              <div className="notifications__user caption">Glenn Greer</div>
-                              <div className="notifications__time caption">12h</div>
-                            </div>
-                            <div className="notifications__text caption-sm">Just pushaded <span className="notifications__project">Sapiens Illustration</span></div>
-                          </div>
-                        </a></div>
-                      <div className="notifications__btns"><a className="notifications__btn btn btn_black" href="notifications">See all incoming activity</a></div>
-                    </div>
-                  </div><a className="header__user" href="#"><img className="header__pic" src="img/ava.png" /></a>
-                </div>
-              </div>
-            </div>
+            <Header 
+              haederClass="page__row page__row_head page__row_border"
+              text="Campaigns"
+            />
             <div className="page__row page__row_border">
               <div className="page__col">
                 <div className="details">
                   <div className="details__container">
-                    <div className="details__title h6">Active Users right now 💡</div>
+                    <div className="details__title h6">Customers visited today 💡</div>
                     <div className="details__row">
                       <div className="details__col">
                         <div className="details__top">
                           <div className="details__number h1">478</div><a className="details__line" href="#">
                             <div className="details__preview"><img className="details__pic" src="img/details-pic.png" /></div>
-                            <div className="details__info caption-sm">Page views per minute</div>
+                            <div className="details__info caption-sm">Total purchase today</div>
                           </a>
                         </div>
                         <div className="details__bottom">
@@ -250,7 +141,7 @@ const Campaigns = () => {
                         <div className="quality__item quality__item_chart">
                           <div className="quality__preview bg-pink-opacity"><img className="quality__pic" src="img/figure-1.png" /></div>
                           <div className="quality__details">
-                            <div className="quality__title title">Unity Comps</div>
+                            <div className="quality__title title">CRM Comps</div>
                             <div className="quality__info caption-sm">New 3D Kit</div>
                           </div>
                           <div className="quality__chart">
@@ -295,7 +186,7 @@ const Campaigns = () => {
                           <div className="quality__preview bg-pink-opacity"><img className="quality__pic" src="img/figure-1.png" /></div>
                           <div className="quality__details">
                             <div className="quality__line">
-                              <div className="quality__title title">Unity Comps</div>
+                              <div className="quality__title title">CRM Comps</div>
                               <div className="quality__price title">+$35</div>
                             </div>
                             <div className="quality__info caption-sm">New 3D Kit</div>
@@ -305,7 +196,7 @@ const Campaigns = () => {
                           <div className="quality__preview bg-pink-opacity"><img className="quality__pic" src="img/figure-3.png" /></div>
                           <div className="quality__details">
                             <div className="quality__line">
-                              <div className="quality__title title">Unity Comps</div>
+                              <div className="quality__title title">CRM Comps</div>
                               <div className="quality__price title">+$35</div>
                             </div>
                             <div className="quality__info caption-sm">New 3D Kit</div>
@@ -315,7 +206,7 @@ const Campaigns = () => {
                           <div className="quality__preview bg-blue-opacity"><img className="quality__pic" src="img/figure-5.png" /></div>
                           <div className="quality__details">
                             <div className="quality__line">
-                              <div className="quality__title title">Unity Comps</div>
+                              <div className="quality__title title">CRM Comps</div>
                               <div className="quality__price title">+$35</div>
                             </div>
                             <div className="quality__info caption-sm">New 3D Kit</div>
@@ -344,7 +235,7 @@ const Campaigns = () => {
                       <div className="goal__list">
                         <div className="goal__item">
                           <div className="goal__head">
-                            <div className="goal__title title">Bento Illustration</div>
+                            <div className="goal__title title">CRM Dashboard</div>
                             <div className="goal__percent title">40%</div>
                           </div>
                           <div className="goal__indicator">
@@ -353,7 +244,7 @@ const Campaigns = () => {
                         </div>
                         <div className="goal__item">
                           <div className="goal__head">
-                            <div className="goal__title title">Bento Illustration</div>
+                            <div className="goal__title title">CRM Dashboard</div>
                             <div className="goal__percent title">25%</div>
                           </div>
                           <div className="goal__indicator">
@@ -362,7 +253,7 @@ const Campaigns = () => {
                         </div>
                         <div className="goal__item">
                           <div className="goal__head">
-                            <div className="goal__title title">Bento Illustration</div>
+                            <div className="goal__title title">CRM Dashboard</div>
                             <div className="goal__percent title">50%</div>
                           </div>
                           <div className="goal__indicator">
@@ -371,7 +262,7 @@ const Campaigns = () => {
                         </div>
                         <div className="goal__item">
                           <div className="goal__head">
-                            <div className="goal__title title">Bento Illustration</div>
+                            <div className="goal__title title">CRM Dashboard</div>
                             <div className="goal__percent title">80%</div>
                           </div>
                           <div className="goal__indicator">

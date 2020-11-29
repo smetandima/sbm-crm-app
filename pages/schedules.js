@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import Layout from '../components/layout'
+import Header from '../components/shared/header'
 
 const Schedules = () => {
 
@@ -8,126 +9,17 @@ const Schedules = () => {
       <Layout>
         <div className="page__wrapper">
           <div className="page__center">
-            <div className="page__row page__row_head">
-              <div className="page__col">
-                <div className="page__hello h5">Hi David,</div>
-                <div className="page__welcome h2">Schedules</div>
-              </div>
-              <div className="page__col">
-                <div className="header"><button className="header__burger" />
-                  <div className="search">
-                    <div className="search__field"><input className="search__input" type="text" placeholder="Search" /><button className="search__toggle"><svg className="icon icon-search">
-                          <use xlinkHref="img/sprite.svg#icon-search" />
-                        </svg><svg className="icon icon-close">
-                          <use xlinkHref="img/sprite.svg#icon-close" />
-                        </svg></button></div>
-                    <div className="search__result">
-                      <div className="search__info caption-sm">Recent Searches</div>
-                      <div className="search__list"><a className="search__item" href="#">
-                          <div className="search__preview bg-pink"><img className="search__pic" src="img/figure-1.png" /></div>
-                          <div className="search__text">Earning byitems<svg className="icon icon-arrow-right">
-                              <use xlinkHref="img/sprite.svg#icon-arrow-right" />
-                            </svg></div>
-                        </a><a className="search__item" href="#">
-                          <div className="search__preview bg-yellow"><img className="search__pic" src="img/figure-4.png" /></div>
-                          <div className="search__text">This monthStatements<svg className="icon icon-arrow-right">
-                              <use xlinkHref="img/sprite.svg#icon-arrow-right" />
-                            </svg></div>
-                        </a><a className="search__item" href="#">
-                          <div className="search__preview bg-blue-light"><img className="search__pic" src="img/figure-3.png" /></div>
-                          <div className="search__text">How manysales I got…<svg className="icon icon-arrow-right">
-                              <use xlinkHref="img/sprite.svg#icon-arrow-right" />
-                            </svg></div>
-                        </a></div><button className="search__btn btn btn_purple btn_wide">Advance Search</button>
-                    </div>
-                  </div><button className="header__search"><svg className="icon icon-search">
-                      <use xlinkHref="img/sprite.svg#icon-search" />
-                    </svg></button>
-                  <div className="notifications"><button className="notifications__open"><svg className="icon icon-bell">
-                        <use xlinkHref="img/sprite.svg#icon-bell" />
-                      </svg><span className="notifications__counter">2</span></button>
-                    <div className="notifications__wrap">
-                      <div className="notifications__info h6">Recent Notification</div>
-                      <div className="notifications__list"><a className="notifications__item" href="notifications">
-                          <div className="notifications__ava"><img className="notifications__pic" src="img/ava-1.png" />
-                            <div className="notifications__status bg-blue"><img className="notifications__pic" src="img/chat.svg" /></div>
-                          </div>
-                          <div className="notifications__details">
-                            <div className="notifications__line">
-                              <div className="notifications__user caption">Sarah Saunders</div>
-                              <div className="notifications__time caption">8h</div>
-                            </div>
-                            <div className="notifications__text caption-sm">Commented on <span className="notifications__project">Collab Design</span></div>
-                          </div>
-                        </a><a className="notifications__item" href="notifications">
-                          <div className="notifications__ava"><img className="notifications__pic" src="img/ava-1.png" />
-                            <div className="notifications__status bg-green"><img className="notifications__pic" src="img/bag.svg" /></div>
-                          </div>
-                          <div className="notifications__details">
-                            <div className="notifications__line">
-                              <div className="notifications__user caption">Glenn Greer</div>
-                              <div className="notifications__time caption">12h</div>
-                            </div>
-                            <div className="notifications__text caption-sm">Just pushaded <span className="notifications__project">Sapiens Illustration</span></div>
-                          </div>
-                        </a><a className="notifications__item" href="notifications">
-                          <div className="notifications__ava"><img className="notifications__pic" src="img/ava-1.png" />
-                            <div className="notifications__status bg-purple"><img className="notifications__pic" src="img/message.svg" /></div>
-                          </div>
-                          <div className="notifications__details">
-                            <div className="notifications__line">
-                              <div className="notifications__user caption">Sarah Saunders</div>
-                              <div className="notifications__time caption">14h</div>
-                            </div>
-                            <div className="notifications__text caption-sm">Sent you a message 📪 </div>
-                          </div>
-                        </a><a className="notifications__item" href="notifications">
-                          <div className="notifications__ava"><img className="notifications__pic" src="img/ava-1.png" />
-                            <div className="notifications__status bg-red"><img className="notifications__pic" src="img/heart.svg" /></div>
-                          </div>
-                          <div className="notifications__details">
-                            <div className="notifications__line">
-                              <div className="notifications__user caption">Sarah Saunders</div>
-                              <div className="notifications__time caption">21h</div>
-                            </div>
-                            <div className="notifications__text caption-sm">Liked <span className="notifications__project">Folio Agency</span></div>
-                          </div>
-                        </a><a className="notifications__item" href="notifications">
-                          <div className="notifications__ava"><img className="notifications__pic" src="img/ava-1.png" />
-                            <div className="notifications__status bg-blue"><img className="notifications__pic" src="img/chat.svg" /></div>
-                          </div>
-                          <div className="notifications__details">
-                            <div className="notifications__line">
-                              <div className="notifications__user caption">Sarah Saunders</div>
-                              <div className="notifications__time caption">8h</div>
-                            </div>
-                            <div className="notifications__text caption-sm">Commented on <span className="notifications__project">Collab Design</span></div>
-                          </div>
-                        </a><a className="notifications__item" href="notifications">
-                          <div className="notifications__ava"><img className="notifications__pic" src="img/ava-1.png" />
-                            <div className="notifications__status bg-green"><img className="notifications__pic" src="img/bag.svg" /></div>
-                          </div>
-                          <div className="notifications__details">
-                            <div className="notifications__line">
-                              <div className="notifications__user caption">Glenn Greer</div>
-                              <div className="notifications__time caption">12h</div>
-                            </div>
-                            <div className="notifications__text caption-sm">Just pushaded <span className="notifications__project">Sapiens Illustration</span></div>
-                          </div>
-                        </a></div>
-                      <div className="notifications__btns"><a className="notifications__btn btn btn_black" href="notifications">See all incoming activity</a></div>
-                    </div>
-                  </div><a className="header__user" href="#"><img className="header__pic" src="img/ava.png" /></a>
-                </div>
-              </div>
-            </div>
+            <Header 
+              haederClass="page__row page__row_head"
+              text="Schedules"
+            />
             <div className="page__content">
               <div className="banner">
                 <div className="banner__container">
                   <div className="banner__preview"><img className="banner__pic" src="img/banner-pic.png" /></div>
                   <div className="banner__wrap">
-                    <div className="banner__title h3">Unity Dashboard</div>
-                    <div className="banner__text">Create Your Product Dashboard in Minutes</div><button className="banner__btn btn btn_white">Create Schedule</button>
+                    <div className="banner__title h3">CRM Dashboard</div>
+                    <div className="banner__text">Create Your Event Schedule in Minutes</div><button className="banner__btn btn btn_white">Create Schedule</button>
                   </div>
                 </div>
               </div>
@@ -141,7 +33,7 @@ const Schedules = () => {
                           <div className="schedules__number h4">20</div>
                         </div>
                         <div className="schedules__details">
-                          <div className="schedules__category title">Unity UI Kit<svg className="icon icon-arrow-right">
+                          <div className="schedules__category title">Dashboard UI Kit<svg className="icon icon-arrow-right">
                               <use xlinkHref="img/sprite.svg#icon-arrow-right" />
                             </svg></div>
                           <div className="schedules__info caption-sm">UI Design</div>
@@ -153,7 +45,7 @@ const Schedules = () => {
                           <div className="schedules__number h4">21</div>
                         </div>
                         <div className="schedules__details">
-                          <div className="schedules__category title">Bento 3D<svg className="icon icon-arrow-right">
+                          <div className="schedules__category title">CRM 3D<svg className="icon icon-arrow-right">
                               <use xlinkHref="img/sprite.svg#icon-arrow-right" />
                             </svg></div>
                           <div className="schedules__info caption-sm">UI Design</div>
@@ -165,7 +57,7 @@ const Schedules = () => {
                           <div className="schedules__number h4">22</div>
                         </div>
                         <div className="schedules__details">
-                          <div className="schedules__category title">Unity UI Kit<svg className="icon icon-arrow-right">
+                          <div className="schedules__category title">Dashboard UI Kit<svg className="icon icon-arrow-right">
                               <use xlinkHref="img/sprite.svg#icon-arrow-right" />
                             </svg></div>
                           <div className="schedules__info caption-sm">UI Design</div>
@@ -177,7 +69,7 @@ const Schedules = () => {
                           <div className="schedules__number h4">23</div>
                         </div>
                         <div className="schedules__details">
-                          <div className="schedules__category title">Unity UI Kit<svg className="icon icon-arrow-right">
+                          <div className="schedules__category title">Dashboard UI Kit<svg className="icon icon-arrow-right">
                               <use xlinkHref="img/sprite.svg#icon-arrow-right" />
                             </svg></div>
                           <div className="schedules__info caption-sm">UI Design</div>
@@ -231,7 +123,7 @@ const Schedules = () => {
                             <div className="schedules__option">08:00</div>
                             <div className="schedules__week">
                               <div className="schedules__task bg-purple" style={{width: '33.33%'}}>
-                                <div className="schedules__text">Bento 3D Objects</div>
+                                <div className="schedules__text">CRM Dashboard</div>
                               </div>
                             </div>
                           </div>
@@ -239,7 +131,7 @@ const Schedules = () => {
                             <div className="schedules__option">09:00</div>
                             <div className="schedules__week">
                               <div className="schedules__task bg-pink" style={{width: '50%', marginLeft: '16.66%'}}>
-                                <div className="schedules__text">Bento 3D Objects</div>
+                                <div className="schedules__text">CRM Dashboard</div>
                               </div>
                             </div>
                           </div>
@@ -247,7 +139,7 @@ const Schedules = () => {
                             <div className="schedules__option">10:00</div>
                             <div className="schedules__week">
                               <div className="schedules__task bg-blue-light" style={{width: '83.33%'}}>
-                                <div className="schedules__text">Bento 3D Objects</div>
+                                <div className="schedules__text">CRM Dashboard</div>
                               </div>
                             </div>
                           </div>
@@ -255,7 +147,7 @@ const Schedules = () => {
                             <div className="schedules__option">11:00</div>
                             <div className="schedules__week">
                               <div className="schedules__task bg-purple-light" style={{width: '66.66%', marginLeft: '16.66%'}}>
-                                <div className="schedules__text">Bento 3D Objects</div>
+                                <div className="schedules__text">CRM Dashboard</div>
                               </div>
                             </div>
                           </div>
@@ -295,7 +187,7 @@ const Schedules = () => {
                       <div className="quality__item quality__item_chart">
                         <div className="quality__preview bg-pink-opacity"><img className="quality__pic" src="img/figure-1.png" /></div>
                         <div className="quality__details">
-                          <div className="quality__title title">Unity Comps</div>
+                          <div className="quality__title title">Dashboard Comps</div>
                           <div className="quality__info caption-sm">New 3D Kit</div>
                         </div>
                         <div className="quality__chart">
