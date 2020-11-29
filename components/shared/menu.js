@@ -21,16 +21,10 @@ const Menu = () => {
                 <div className="sidebar__menu">
                   
                   <MenuLink  href="/overview" text="Overview" icon="icon-overview" />
-                  <MenuLink  href="/" text="Customers" icon="icon-profile" />
-                  <MenuLink  href="/" text="Campaigns" icon="icon-chart" />
-                  <MenuLink  href="/" text="Schedules" icon="icon-discovery" />
-                  <MenuLink  href="/" text="Payouts" icon="icon-wallet" />
-                  <MenuLink  href="/" text="Statement" icon="icon-document" />
-                  {/* <MenuLink  href="/customers" text="Customers" icon="icon-profile" />
+                  <MenuLink  href="/customers" text="Customers" icon="icon-profile" />
                   <MenuLink  href="/campaigns" text="Campaigns" icon="icon-chart" />
                   <MenuLink  href="/schedules" text="Schedules" icon="icon-discovery" />
-                  <MenuLink  href="/payouts" text="Payouts" icon="icon-wallet" />
-                  <MenuLink  href="/statement" text="Statement" icon="icon-document" /> */}
+                  <MenuLink  href="/statement" text="Statement" icon="icon-document" />
 
                   <a className="sidebar__item js-popup-open" href="#popup-settings" data-effect="mfp-zoom-in">
                     <div className="sidebar__icon">
@@ -46,12 +40,9 @@ const Menu = () => {
               <div className="sidebar__group">
                 <div className="sidebar__caption caption-sm">Marketing</div>
                 <div className="sidebar__menu">
-                  <MenuLink  href="/" text="Inbox" icon="icon-message" counter="18" />
-                  <MenuLink  href="/" text="Notifications" icon="icon-notification" counter="2" />
-                  <MenuLink  href="/" text="Comments" icon="icon-chat" counter="20" />
-                  {/* <MenuLink  href="/inbox" text="Inbox" icon="icon-message" counter="18" />
+                  <MenuLink  href="/inbox" text="Inbox" icon="icon-message" counter="18" />
                   <MenuLink  href="/notifications" text="Notifications" icon="icon-notification" counter="2" />
-                  <MenuLink  href="/comments" text="Comments" icon="icon-chat" counter="20" /> */}
+                  <MenuLink  href="/comments" text="Comments" icon="icon-chat" counter="20" />
                 </div>
               </div> 
             </div>
