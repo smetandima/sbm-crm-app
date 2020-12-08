@@ -17,7 +17,7 @@ const Customers = () => {
 
     setLoading(true)
     get_customer_info(offsetData).then(res => {
-      setData([...data, ...res.data.customer_info])
+      setData([...data, ...res.recordset])
       setLoading(false)
     })
   }, [offset])
@@ -25,8 +25,11 @@ const Customers = () => {
   async function get_customer_info(offsetData){
     const ret = await axios({
       method: 'post',
-      url: 'http://198.11.172.117/sbm-dashboard/crm/get_customer_info',
-      data: offsetData
+      url: 'https://api-sbmtec.herokuapp.com/get_customer_info',
+      data: {
+        offset: offset,
+        limit: 10
+      }
     })
     return ret.data
   }
