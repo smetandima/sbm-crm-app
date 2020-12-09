@@ -25,8 +25,8 @@ const Daterange = () => {
             setPeriod({
               description: 'Today',
               value: 'today',
-              from: moment().format('YYYY-MM-DD') + ' 00:00:00',
-              to: moment().format('YYYY-MM-DD') + ' 23:59:59'
+              from: moment().format('YYYY-MM-DD'),
+              to: moment().format('YYYY-MM-DD')
             })
           }}>
             <div className="dropdown__title title">Today</div>
@@ -37,8 +37,8 @@ const Daterange = () => {
             setPeriod({
               description: 'Yesterday',
               value: 'yesterday',
-              from: moment().subtract(1, 'days').format('YYYY-MM-DD') + ' 00:00:00',
-              to: moment().subtract(1, 'days').format('YYYY-MM-DD') + ' 23:59:59'
+              from: moment().subtract(1, 'days').format('YYYY-MM-DD'),
+              to: moment().subtract(1, 'days').format('YYYY-MM-DD')
             })
           }}>
             <div className="dropdown__title title">Yesterday</div>

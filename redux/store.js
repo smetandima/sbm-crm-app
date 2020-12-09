@@ -7,7 +7,8 @@ let store
 
 const initialState = {
   theme: 'light',
-  api_endpoint: 'https://api-sbmtec.herokuapp.com',
+  //api_endpoint: 'https://api-sbmtec.herokuapp.com',
+  api_endpoint: 'http://localhost:3001',
   loading: false,
   // Customer page 
   customers: [],
@@ -15,8 +16,8 @@ const initialState = {
   customer_period: {
     description: 'Today',
     value: 'today',
-    from: moment().format('YYYY-MM-DD') + ' 00:00:00',
-    to: moment().format('YYYY-MM-DD') + ' 23:59:59'
+    from: moment().format('YYYY-MM-DD'),
+    to: moment().format('YYYY-MM-DD')
   },
   shop: {
     description: 'All shops',

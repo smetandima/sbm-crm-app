@@ -20,40 +20,72 @@ const Customers = () => {
   const loading = useSelector(state => state.loading)
   const rowCount = 10
 
+  const firstUpdate = useRef(true);
+
   const [selected, setSelected] = useState([])
-  
+
   useEffect(() => {
     // setData([])
     // dispatch({
     //   type: 'SET_CUSTOMER_OFFSET',
-    //   payload: 0
+    //   payload: -1
     // })
-  }, [shop, period])
+    // if(!firstUpdate.current){
+    //   setData([])
+    //   dispatch({
+    //     type: 'SET_CUSTOMER_OFFSET',
+    //     payload: -1
+    //   })
+    // }else{
+    //   firstUpdate.current = false
+    // }
+    if(firstUpdate.current){
+      firstUpdate.current = false
+    }else{
+      setData([])
+      dispatch({
+        type: 'SET_CUSTOMER_OFFSET',
+        payload: -1
+      })
+    }
+    
+  }, [shop.value, period.value])
 
   useEffect(() => {
-    if(data.length !== (offset / rowCount + 1) * rowCount){
-      dispatch({
-        type: 'TOGGLE_LOADING',
-        payload: true
-      })
-      get_customer_info().then(res => {
-        if(res.status === 200){
-          setData([...data, ...res.data.recordset])
-          dispatch({
-            type: 'SET_CUSTOMERS',
-            payload: [...data, ...res.data.recordset]
-          })
-          setError(undefined)
-        }else{
-          setError({
-            status: res.status,
-            msg: 'Database error'
-          })
-        }
+    if(offset !== -1){
+      if(data.length !== (offset / rowCount + 1) * rowCount){
         dispatch({
           type: 'TOGGLE_LOADING',
-          payload: false
+          payload: true
         })
+        get_customer_info().then(res => {
+          if(res.status === 200){
+            if(Object.keys(res).length === 0 && res.constructor === Object){
+              
+            }else{
+              setData([...data, ...res.data.recordset])
+              dispatch({
+                type: 'SET_CUSTOMERS',
+                payload: [...data, ...res.data.recordset]
+              })
+            }
+            setError(undefined)
+          }else{
+            setError({
+              status: res.status,
+              msg: 'Database error'
+            })
+          }
+          dispatch({
+            type: 'TOGGLE_LOADING',
+            payload: false
+          })
+        })
+      }
+    }else{
+      dispatch({
+        type: 'SET_CUSTOMER_OFFSET',
+        payload: 0
       })
     }
     return () => {
@@ -137,7 +169,7 @@ const Customers = () => {
                               <div className="products__cell"><a className="products__item">
                                   <div className="products__details">
                                     <div className="products__title title">{ item.name }</div>
-                                    <div className="products__info caption color-gray">{ item.spoonity_id }</div>
+                                    <div className={item.spoonity_id ? 'products__info caption color-pink' : 'products__info caption color-purple'}>{ item.spoonity_id ? `Spoonity ID: ${item.spoonity_id}` : `Gfo ID: ${item.gfo_id}` }</div>
                                   </div>
                                 </a></div>
                               <div className="products__cell">
@@ -160,12 +192,13 @@ const Customers = () => {
                               </div>
                             </div>
                           }) 
-                            : 'Empty' }
+                        : <div style={{width: '350px'}}>{period.description}, there are no customer activity in {shop.description}</div> }
                       </> 
                     </div>
                   </div>
                   <div className="products__more">
-                    <div style={{marginBottom: '10px'}}>Total loaded {data.length} customers</div>
+                    <div style={{marginBottom: '10px'}}>
+                      Total loaded <span style={{fontWeight: 'bold'}}>{data.length}</span> customers from <span style={{fontWeight: 'bold'}}>{shop.description}</span> during <span style={{fontWeight: 'bold'}}>{period.description}</span></div>
                     <button className="products__btn btn btn_black" onClick={() => {
                       dispatch({
                         type: 'SET_CUSTOMER_OFFSET',
