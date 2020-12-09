@@ -25,20 +25,6 @@ const Customers = () => {
   const [selected, setSelected] = useState([])
 
   useEffect(() => {
-    // setData([])
-    // dispatch({
-    //   type: 'SET_CUSTOMER_OFFSET',
-    //   payload: -1
-    // })
-    // if(!firstUpdate.current){
-    //   setData([])
-    //   dispatch({
-    //     type: 'SET_CUSTOMER_OFFSET',
-    //     payload: -1
-    //   })
-    // }else{
-    //   firstUpdate.current = false
-    // }
     if(firstUpdate.current){
       firstUpdate.current = false
     }else{

@@ -7,8 +7,8 @@ let store
 
 const initialState = {
   theme: 'light',
-  //api_endpoint: 'https://api-sbmtec.herokuapp.com',
-  api_endpoint: 'http://localhost:3001',
+  api_endpoint: 'https://api-sbmtec.herokuapp.com',
+  //api_endpoint: 'http://localhost:3001',
   loading: false,
   // Customer page 
   customers: [],
