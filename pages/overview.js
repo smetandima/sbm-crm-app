@@ -195,7 +195,7 @@ const Overview = () => {
         <div className="page__wrapper">
           <div className="page__center">
             <Header 
-              haederClass = "page__row page__row_head page__row_border"
+              headerClass = "page__row page__row_head page__row_border"
               text = { <>Welcome back<span className="desktop-hide">👋</span></> }
             />
             <div className="page__row page__row_border">

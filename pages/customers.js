@@ -1,37 +1,82 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import axios from 'axios'
-import * as moment from 'moment'
+import moment from 'moment'
 import Layout from '../components/layout'
 import Header from '../components/shared/header'
+import { useSelector, useDispatch } from 'react-redux'
+import Daterange from '../components/widgets/daterange'
+import Shopselect from '../components/widgets/shopselect'
 
 const Customers = () => {
-  const [loading, setLoading] = useState(false)
-  const [data, setData] = useState([])
+  const API_ENDPOINT = useSelector(state => state.api_endpoint)
+  const dispatch = useDispatch()
+
+  const [data, setData] = useState(useSelector(state => state.customers))
+  const [error, setError] = useState(undefined)
+
+  const offset = useSelector(state => state.customer_offset)
+  const period = useSelector(state => state.customer_period)
+  const shop = useSelector(state => state.shop)
+  const loading = useSelector(state => state.loading)
+  const rowCount = 10
+
+  const [selected, setSelected] = useState([])
   
-  const [offset, setOffset] = useState(0)
+  useEffect(() => {
+    // setData([])
+    // dispatch({
+    //   type: 'SET_CUSTOMER_OFFSET',
+    //   payload: 0
+    // })
+  }, [shop, period])
 
   useEffect(() => {
-    const offsetData = new FormData()
-    offsetData.append('limit', 10)
-    offsetData.append('offset', offset)
-
-    setLoading(true)
-    get_customer_info(offsetData).then(res => {
-      setData([...data, ...res.recordset])
-      setLoading(false)
-    })
+    if(data.length !== (offset / rowCount + 1) * rowCount){
+      dispatch({
+        type: 'TOGGLE_LOADING',
+        payload: true
+      })
+      get_customer_info().then(res => {
+        if(res.status === 200){
+          setData([...data, ...res.data.recordset])
+          dispatch({
+            type: 'SET_CUSTOMERS',
+            payload: [...data, ...res.data.recordset]
+          })
+          setError(undefined)
+        }else{
+          setError({
+            status: res.status,
+            msg: 'Database error'
+          })
+        }
+        dispatch({
+          type: 'TOGGLE_LOADING',
+          payload: false
+        })
+      })
+    }
+    return () => {
+      dispatch({
+        type: 'TOGGLE_LOADING',
+        payload: false
+      })
+    }
   }, [offset])
-
-  async function get_customer_info(offsetData){
+  
+  async function get_customer_info(){
     const ret = await axios({
       method: 'post',
-      url: 'https://api-sbmtec.herokuapp.com/get_customer_info',
+      url: API_ENDPOINT + '/get_customer_info',
       data: {
         offset: offset,
-        limit: 10
+        period: period,
+        shop: shop.value,
+        search_key: '',
+        limit: rowCount
       }
     })
-    return ret.data
+    return ret
   }
   return (
     <>
@@ -39,7 +84,7 @@ const Customers = () => {
         <div className="page__wrapper">
           <div className="page__center">
             <Header 
-              haederClass = "page__row page__row_head"
+              headerClass = "page__row page__row_head"
               text = { <>Welcome back<span className="desktop-hide">👋</span></> }
             />
             <div className="page__content">
@@ -57,34 +102,8 @@ const Customers = () => {
                   <div className="sorting__row">
                     <div className="sorting__col">
                       <div className="sorting__dropdowns">
-                        <div className="dropdown js-dropdown">
-                          <div className="dropdown__head js-dropdown-head">Last 30 days</div>
-                          <div className="dropdown__body js-dropdown-body">
-                            <a className="dropdown__item" href="#">
-                              <div className="dropdown__title title">Bento 3D Kit </div>
-                              <div className="dropdown__info caption">Illustration</div>
-                            </a><a className="dropdown__item" href="#">
-                              <div className="dropdown__title title">Bento 3D Kit </div>
-                              <div className="dropdown__info caption">Illustration</div>
-                            </a><a className="dropdown__item" href="#">
-                              <div className="dropdown__title title">Collab UI Kit </div>
-                              <div className="dropdown__info caption">Coded Template</div>
-                            </a></div>
-                        </div>
-                        <div className="dropdown js-dropdown">
-                          <div className="dropdown__head js-dropdown-head">Aug 2020</div>
-                          <div className="dropdown__body js-dropdown-body">
-                            <a className="dropdown__item" href="#">
-                              <div className="dropdown__title title">Bento 3D Kit </div>
-                              <div className="dropdown__info caption">Illustration</div>
-                            </a><a className="dropdown__item" href="#">
-                              <div className="dropdown__title title">Bento 3D Kit </div>
-                              <div className="dropdown__info caption">Illustration</div>
-                            </a><a className="dropdown__item" href="#">
-                              <div className="dropdown__title title">Collab UI Kit </div>
-                              <div className="dropdown__info caption">Coded Template</div>
-                            </a></div>
-                        </div>
+                        <Shopselect />
+                        <Daterange />
                       </div>
                     </div>
                     <div className="sorting__col">
@@ -92,9 +111,7 @@ const Customers = () => {
                         <div className="sorting__search"><button className="sorting__open"><svg className="icon icon-search">
                               <use xlinkHref="img/sprite.svg#icon-search" />
                             </svg></button><input className="sorting__input" type="text" placeholder="Search" /></div>
-                        <div className="sorting__actions"><button className="sorting__action"><svg className="icon icon-edit">
-                              <use xlinkHref="img/sprite.svg#icon-edit" />
-                            </svg></button><button className="sorting__action"><svg className="icon icon-box">
+                        <div className="sorting__actions"><button className="sorting__action"><svg className="icon icon-box">
                               <use xlinkHref="img/sprite.svg#icon-box" />
                             </svg></button></div>
                       </div>
@@ -102,55 +119,61 @@ const Customers = () => {
                   </div>
                 </div>
                 <div className="products products_main">
-                  <div className="products__table">
-                    <div className="products__row products__row_head">
-                      <div className="products__cell"><label className="checkbox"><input className="checkbox__input" type="checkbox" /><span className="checkbox__in"><span className="checkbox__tick" /></span></label></div>
-                      <div className="products__cell">Customer</div>
-                      <div className="products__cell">Email</div>
-                      <div className="products__cell">Phone number</div>
-                      <div className="products__cell">Visit count</div>
-                    </div>
-                    <>
-                      { data.length > 0 ? 
-                        data.map((item, idx) => {
-                          return <div key={ idx } className="products__row">
-                            <div className="products__cell"><label className="checkbox"><input className="checkbox__input" type="checkbox" /><span className="checkbox__in"><span className="checkbox__tick" /></span></label></div>
-                            <div className="products__cell"><a className="products__item" href="#">
-                                <div className="products__preview"><img className="products__pic" src="img/product-pic.png"/></div>
-                                <div className="products__details">
-                                  <div className="products__title title">{ item.name }</div>
-                                  <div className="products__info caption color-gray">{ item.spoonity_id }</div>
-                                </div>
-                              </a></div>
-                            <div className="products__cell">
-                              <div className="products__payment">{ item.email }</div>
-                            </div>
-                            <div className="products__cell">
-                              <div className="products__color">
-                                <div className="products__text">{ item.phone }</div>
-                              </div>
-                            </div>
-                            <div className="products__cell">
-                              <div className="products__cost">
-                                <div className="products__money">{ item.visit_count }</div>
-                                <div className="products__tooltip">
-                                  <div className="products__sale">
-                                    <div className="products__icon bg-red"><img className="products__pic" src="img/chat-black.svg"/></div>
-                                    <div className="products__caption caption-sm">Last visit</div>
+                  <div className="customer_wrapper">
+                    <div className="products__table">
+                      <div className="products__row products__row_head">
+                        <div className="products__cell"><label className="checkbox"><input className="checkbox__input" type="checkbox" /><span className="checkbox__in"><span className="checkbox__tick" /></span></label></div>
+                        <div className="products__cell">Customer</div>
+                        <div className="products__cell">Email</div>
+                        <div className="products__cell">Phone number</div>
+                        <div className="products__cell">Total visits</div>
+                        <div className="products__cell">Last visit</div>
+                      </div>
+                      <>
+                        { data.length > 0 ? 
+                          data.map((item, idx) => {
+                            return <div key={ idx } className="products__row">
+                              <div className="products__cell"><label className="checkbox"><input className="checkbox__input" type="checkbox" /><span className="checkbox__in"><span className="checkbox__tick" /></span></label></div>
+                              <div className="products__cell"><a className="products__item">
+                                  <div className="products__details">
+                                    <div className="products__title title">{ item.name }</div>
+                                    <div className="products__info caption color-gray">{ item.spoonity_id }</div>
                                   </div>
-                                  <div className="products__price">{ moment(item.last_visit.date).format('MMM DD, YYYY') }</div>
-                                  <div className="products__progress"><span style={{width: '68%'}} /></div>
+                                </a></div>
+                              <div className="products__cell">
+                                <div className="products__payment">{ item.email }</div>
+                              </div>
+                              <div className="products__cell">
+                                <div className="products__color">
+                                  <div className="products__text">{ item.phone }</div>
+                                </div>
+                              </div>
+                              <div className="products__cell">
+                                <div className="products__cost">
+                                  <div className="products__text">{ item.visit_count }</div>
+                                </div>
+                              </div>
+                              <div className="products__cell">
+                                <div className="products__cost">
+                                  <div className="products__text">{ moment(item.last_visit.date).format('MMM DD, YYYY') }</div>
                                 </div>
                               </div>
                             </div>
-                          </div>
-                        }) 
-                          : 'Empty' }
-                    </> 
+                          }) 
+                            : 'Empty' }
+                      </> 
+                    </div>
                   </div>
-                  <div className="products__more"><button className="products__btn btn btn_black" onClick={() => {
-                    setOffset(offset + 10)
-                  }}>Load More</button></div>
+                  <div className="products__more">
+                    <div style={{marginBottom: '10px'}}>Total loaded {data.length} customers</div>
+                    <button className="products__btn btn btn_black" onClick={() => {
+                      dispatch({
+                        type: 'SET_CUSTOMER_OFFSET',
+                        payload: offset + rowCount
+                      })
+                    }}>{loading ? 'Loading...' : 'Load More'}
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>

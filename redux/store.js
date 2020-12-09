@@ -1,11 +1,28 @@
 import { useMemo } from 'react'
 import { createStore, applyMiddleware } from 'redux'
 import { composeWithDevTools } from 'redux-devtools-extension'
+import moment from 'moment'
 
 let store
 
 const initialState = {
-  theme: 'light'
+  theme: 'light',
+  api_endpoint: 'https://api-sbmtec.herokuapp.com',
+  loading: false,
+  // Customer page 
+  customers: [],
+  customer_offset: 0,
+  customer_period: {
+    description: 'Today',
+    value: 'today',
+    from: moment().format('YYYY-MM-DD') + ' 00:00:00',
+    to: moment().format('YYYY-MM-DD') + ' 23:59:59'
+  },
+  shop: {
+    description: 'All shops',
+    text: 'You own 3 shops',
+    value: 'all'
+  }
 }
 
 const reducer = (state = initialState, action) => {
@@ -14,6 +31,31 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         theme: state.theme === 'dark' ? 'light' : 'dark'
+      }
+    case 'TOGGLE_LOADING': 
+      return {
+        ...state,
+        loading: action.payload
+      }
+    case 'SET_CUSTOMERS': 
+      return {
+        ...state,
+        customers: [...action.payload]
+      }
+    case 'SET_CUSTOMER_OFFSET': 
+      return {
+        ...state,
+        customer_offset: action.payload
+      }
+    case 'SET_CUSTOMER_PERIOD': 
+      return {
+        ...state,
+        customer_period: action.payload
+      }
+    case 'SET_SHOP': 
+      return {
+        ...state,
+        shop: action.payload
       }
     default: 
       return state

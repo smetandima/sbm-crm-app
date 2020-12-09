@@ -10,7 +10,7 @@ const Schedules = () => {
         <div className="page__wrapper">
           <div className="page__center">
             <Header 
-              haederClass="page__row page__row_head"
+              headerClass="page__row page__row_head"
               text="Schedules"
             />
             <div className="page__content">

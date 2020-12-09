@@ -1,6 +1,6 @@
-const Header = ({ haederClass, text }) => {
+const Header = ({ headerClass, text }) => {
   return (<>
-    <div className={haederClass}>
+    <div className={headerClass}>
       <div className="page__col">
         <div className="page__hello h5">Hi David,</div>
         <div className="page__welcome h2">

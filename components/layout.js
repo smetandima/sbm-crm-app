@@ -1,12 +1,24 @@
-
+import { useRef, useEffect } from 'react'
 import { useSelector } from 'react-redux'
+import LoadingBar from 'react-top-loading-bar'
 import Sidebar from './shared/sidebar'
 
 const Layout = ({ children }) => {
   const theme = useSelector(state => state.theme)
+  const loading = useSelector(state => state.loading)
+  const ref = useRef(null)
+
+  useEffect(() => {
+    if(loading){
+      ref.current.continuousStart(25, 300)
+    }else{
+      ref.current.complete()
+    }
+  }, [loading])
 
   return (
     <>
+      <LoadingBar color='#6C5DD3' ref={ref} />
       <div className="page">
         <Sidebar />
         { children }
