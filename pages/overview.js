@@ -322,7 +322,7 @@ const Overview = () => {
                                 <use xlinkHref="img/sprite.svg#icon-arrow-right" />
                               </svg>
                             </div>
-                            <div className="widget__info caption">Spoonity ID, Full name, Email address, Phone number</div>
+                            <div className="widget__info caption">All customers count that visited our shops</div>
                           </div> 
                         </a>
                       </Link>
@@ -333,12 +333,12 @@ const Overview = () => {
                           </div>
                           <div className="widget__details">
                             <div className="widget__category title">
-                              Spoonity reward members - {visitCountAll.tsm}
+                              Spoonity members - {visitCountAll.tsm}
                               <svg className="icon icon-arrow-right">
                                 <use xlinkHref="img/sprite.svg#icon-arrow-right" />
                               </svg>
                             </div>
-                            <div className="widget__info caption">Spoonity ID, Phone number</div>
+                            <div className="widget__info caption">Spoonity reward members</div>
                           </div> 
                         </a>
                       </Link>
@@ -354,7 +354,7 @@ const Overview = () => {
                                 <use xlinkHref="img/sprite.svg#icon-arrow-right" />
                               </svg>
                             </div>
-                            <div className="widget__info caption">They didn't leave their information</div>
+                            <div className="widget__info caption">Online order customers</div>
                           </div>
                         </a>
                       </Link>
