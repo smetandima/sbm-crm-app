@@ -1,10 +1,12 @@
-import { useEffect, useState} from 'react'
+import { useEffect, useState, useRef} from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import useOnClickOutside from '../../hooks/useOnClickOutside'
 
 const Shopselect = () => {
   const [shop, setShop] = useState(useSelector(state => state.shop))
   const [dropdownOpen, setDropdownOpen] = useState(false)
   const dispatch = useDispatch()
+  const ref = useRef()
 
   useEffect(() => {
     dispatch({
@@ -12,9 +14,12 @@ const Shopselect = () => {
       payload: shop
     })
   }, [shop])
+
+  useOnClickOutside(ref, () => setDropdownOpen(false))
+
   return (
     <>
-      <div className={dropdownOpen ? 'dropdown js-dropdown active' : 'dropdown js-dropdown'}>
+      <div className={dropdownOpen ? 'dropdown js-dropdown active' : 'dropdown js-dropdown'} ref={ref}>
         <div className="dropdown__head js-dropdown-head" onClick={() => {
           setDropdownOpen(!dropdownOpen)
         }} >{shop.description}

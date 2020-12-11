@@ -1,11 +1,13 @@
 import { useEffect, useState, useRef } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import moment from 'moment'
+import useOnClickOutside from '../../hooks/useOnClickOutside'
 
 const Daterange = () => {
   const [period, setPeriod] = useState(useSelector(state => state.customer_period))
   const [dropdownOpen, setDropdownOpen] = useState(false)
   const dispatch = useDispatch()
+  const ref = useRef()
 
   useEffect(() => {
     dispatch({
@@ -13,9 +15,12 @@ const Daterange = () => {
       payload: period
     })
   }, [period])
+
+  useOnClickOutside(ref, () => setDropdownOpen(false))
+
   return (
     <>
-      <div className={dropdownOpen ? 'dropdown js-dropdown active' : 'dropdown js-dropdown'}>
+      <div className={dropdownOpen ? 'dropdown js-dropdown active' : 'dropdown js-dropdown'} ref={ref}>
         <div className="dropdown__head js-dropdown-head" onClick={() => {
           setDropdownOpen(!dropdownOpen)
         }} >{period.description}</div>
