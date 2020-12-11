@@ -26,7 +26,7 @@ const Shopselect = () => {
             setShop({
               description: 'All shops',
               text: 'You own 3 shops',
-              value: 'all'
+              value: ['TEMPLE', 'IRVINE', 'CUPERTINO']
             })
           }}>
             <div className="dropdown__title title">All shops</div>
@@ -38,7 +38,7 @@ const Shopselect = () => {
             setShop({
               description: 'TEMPLE',
               text: 'MeetFresh - TEMPLE',
-              value: 'TEMPLE'
+              value: ['TEMPLE']
             })
           }}>
             <div className="dropdown__title title">TEMPLE</div>
@@ -50,7 +50,7 @@ const Shopselect = () => {
             setShop({
               description: 'IRVINE',
               text: 'MeetFresh - IRVINE',
-              value: 'IRVINE'
+              value: ['IRVINE']
             })
           }}>
             <div className="dropdown__title title">IRVINE</div>
@@ -62,7 +62,7 @@ const Shopselect = () => {
             setShop({
               description: 'CUPERTINO',
               text: 'MeetFresh - CUPERTINO',
-              value: 'CUPERTINO'
+              value: ['CUPERTINO']
             })
           }}>
             <div className="dropdown__title title">CUPERTINO</div>

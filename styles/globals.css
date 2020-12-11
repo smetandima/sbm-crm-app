@@ -1939,7 +1939,7 @@ body.dark .switch_theme .switch__input + .switch__in .icon-sun {
 }
 
 .slider {
-  margin-bottom: 56px;
+  margin-bottom: 30px;
 }
 
 .slider__container {
@@ -2205,6 +2205,21 @@ body.dark .btn_gray {
 
 body.dark .btn_gray:hover {
   opacity: .8;
+}
+
+.filter_widget{
+  display: flex;
+  margin: 0 -16px;
+}
+
+.filter_widget .widget{
+  flex-grow: 0;
+  flex-shrink: 0;
+  flex-basis: calc(50% - 32px);
+  width: calc(50% - 32px);
+  margin: 0 16px;
+  margin-bottom: 16px;
+  padding: 0px;
 }
 
 .widget {
@@ -3497,6 +3512,8 @@ body.dark .sorting__action:hover {
   -webkit-transition: all .25s;
   -o-transition: all .25s;
   transition: all .25s;
+  max-height: 420px;
+  overflow: auto;
 }
 
 .dropdown__item {
@@ -8396,6 +8413,8 @@ body.dark .mfp-bg {
     right: 0;
     width: auto;
     padding: 24px 21px;
+    max-height: 300px;
+    overflow: auto;
   }
   .products__cell {
     padding-left: 15px;

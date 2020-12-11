@@ -14,16 +14,19 @@ const initialState = {
   customers: [],
   customer_offset: 0,
   customer_period: {
-    description: 'Today',
-    value: 'today',
-    from: moment().format('YYYY-MM-DD'),
-    to: moment().format('YYYY-MM-DD')
+    description: 'Yesterday',
+    value: 'yesterday',
+    from: moment().subtract(1, 'days').format('YYYY-MM-DD'),
+    to: moment().subtract(1, 'days').format('YYYY-MM-DD')
   },
   shop: {
     description: 'All shops',
     text: 'You own 3 shops',
-    value: 'all'
-  }
+    value: ['TEMPLE', 'CUPERTINO', 'IRVINE']
+  },
+  // Overview page 
+
+  visit_count: []
 }
 
 const reducer = (state = initialState, action) => {
@@ -57,6 +60,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         shop: action.payload
+      }
+    case 'SET_VISIT_COUNT': 
+      return {
+        ...state,
+        visit_count: [...action.payload]
       }
     default: 
       return state

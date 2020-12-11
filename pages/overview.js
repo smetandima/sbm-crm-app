@@ -1,8 +1,13 @@
-import { useEffect } from 'react'
+import { useEffect, useState, useRef } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 import Link from 'next/link'
+import axios from 'axios'
+import moment from 'moment'
+
 import Layout from '../components/layout'
 import Header from '../components/shared/header'
-
+import Daterange from '../components/widgets/daterange'
+import Shopselect from '../components/widgets/shopselect'
 // colors
 const blue = '#A0D7E7';
 const blueLight = '#0e97b5';
@@ -23,7 +28,67 @@ const borderColor = "#E4E4E4";
 // const text = "#171725";
 
 const Overview = () => {
+  const API_ENDPOINT = useSelector(state => state.api_endpoint)
+  const dispatch = useDispatch()
+  const [error, setError] = useState(undefined)
+  const firstUpdate = useRef(true)
+  const period = useSelector(state => state.customer_period)
+  const shop = useSelector(state => state.shop)
+  const loading = useSelector(state => state.loading)
   
+  const visit_count = useSelector(state => state.visit_count)
+
+  const [visitCountAll, setVisitCountAll] = useState({
+    all: 0,
+    tsm: 0,
+    gfo: 0
+  })
+  //const [constData,]
+
+  useEffect(() => {
+    //if(fistUpdate && )
+    dispatch({
+      type: 'TOGGLE_LOADING',
+      payload: true
+    })
+    get_customer_visit_count().then(result => {
+      if(result.status == 200){
+        if(Object.keys(result).length === 0 && result.constructor === Object){
+              
+        }else{
+          dispatch({
+            type: 'SET_VISIT_COUNT',
+            payload: [...result.data.recordset]
+          })
+        }
+        setError(undefined)
+      }else{
+        setError({
+          status: res.status,
+          msg: 'Database error'
+        })
+      }
+      dispatch({
+        type: 'TOGGLE_LOADING',
+        payload: false
+      })
+    })
+  }, [period, shop])
+
+  useEffect(() => {
+    let all = 0, tsm = 0, gfo = 0
+    visit_count.forEach(item => {
+      all += item.all_count
+      tsm += item.tsm_count 
+      gfo += item.gfo_count
+    })
+    setVisitCountAll({
+      all: all,
+      tsm: tsm,
+      gfo: gfo
+    })
+  }, [visit_count])
+
   useEffect(() => {
     // Chart 
 
@@ -187,7 +252,18 @@ const Overview = () => {
       shop_chart = undefined
     }
   }, [])
-
+  
+  async function get_customer_visit_count(){
+    const ret = await axios({
+      method: 'post',
+      url: API_ENDPOINT + '/get_customer_visit_count',
+      data: {
+        period: period,
+        shop: shop.value
+      }
+    })
+    return ret
+  }
 
   return (
     <>
@@ -225,9 +301,14 @@ const Overview = () => {
                     </button>
                   </div>
                 </div>
+                <div className="filter_widget">
+                  <div className="widget"><Shopselect /></div>
+                  <div className="widget"><Daterange /></div>
+                  
+                </div>
                 <div className="page__widgets">
                   <div className="widget widget_shadow">
-                    <div className="widget__title">Customers type</div>
+                    <div className="widget__title">Total visits in {shop.description}</div>
                     <div className="widget__list">
                       <Link href="/customers">
                         <a className="widget__item">
@@ -236,7 +317,7 @@ const Overview = () => {
                           </div>
                           <div className="widget__details">
                             <div className="widget__category title">
-                              Full verified customers - 32019
+                              All customers - {visitCountAll.all}
                               <svg className="icon icon-arrow-right">
                                 <use xlinkHref="img/sprite.svg#icon-arrow-right" />
                               </svg>
@@ -252,7 +333,7 @@ const Overview = () => {
                           </div>
                           <div className="widget__details">
                             <div className="widget__category title">
-                              Half verified customers - 12992
+                              Spoonity reward members - {visitCountAll.tsm}
                               <svg className="icon icon-arrow-right">
                                 <use xlinkHref="img/sprite.svg#icon-arrow-right" />
                               </svg>
@@ -268,7 +349,23 @@ const Overview = () => {
                           </div>
                           <div className="widget__details">
                             <div className="widget__category title">
-                              Unknown customers - 9920
+                              Global food online orders - {visitCountAll.gfo}
+                              <svg className="icon icon-arrow-right">
+                                <use xlinkHref="img/sprite.svg#icon-arrow-right" />
+                              </svg>
+                            </div>
+                            <div className="widget__info caption">They didn't leave their information</div>
+                          </div>
+                        </a>
+                      </Link>
+                      <Link href="/customers">
+                        <a className="widget__item">
+                          <div className="widget__preview bg-blue-light">
+                            <img className="widget__pic" src="img/figure-3.png" />
+                          </div>
+                          <div className="widget__details">
+                            <div className="widget__category title">
+                              Unknown customers - {visitCountAll.all - visitCountAll.tsm - visitCountAll.gfo}
                               <svg className="icon icon-arrow-right">
                                 <use xlinkHref="img/sprite.svg#icon-arrow-right" />
                               </svg>

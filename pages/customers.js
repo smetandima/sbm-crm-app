@@ -1,9 +1,10 @@
 import { useEffect, useState, useRef } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 import axios from 'axios'
 import moment from 'moment'
+
 import Layout from '../components/layout'
 import Header from '../components/shared/header'
-import { useSelector, useDispatch } from 'react-redux'
 import Daterange from '../components/widgets/daterange'
 import Shopselect from '../components/widgets/shopselect'
 
@@ -20,7 +21,7 @@ const Customers = () => {
   const loading = useSelector(state => state.loading)
   const rowCount = 10
 
-  const firstUpdate = useRef(true);
+  const firstUpdate = useRef(true)
 
   const [selected, setSelected] = useState([])
 
@@ -44,7 +45,7 @@ const Customers = () => {
           type: 'TOGGLE_LOADING',
           payload: true
         })
-        get_customer_info().then(res => {
+        get_customer_visit_info().then(res => {
           if(res.status === 200){
             if(Object.keys(res).length === 0 && res.constructor === Object){
               
@@ -82,10 +83,10 @@ const Customers = () => {
     }
   }, [offset])
   
-  async function get_customer_info(){
+  async function get_customer_visit_info(){
     const ret = await axios({
       method: 'post',
-      url: API_ENDPOINT + '/get_customer_info',
+      url: API_ENDPOINT + '/get_customer_visit_info',
       data: {
         offset: offset,
         period: period,
