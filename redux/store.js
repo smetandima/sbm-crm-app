@@ -24,9 +24,16 @@ const initialState = {
     text: 'You own 3 shops',
     value: ['TEMPLE', 'CUPERTINO', 'IRVINE']
   },
+  customer_type: {
+    description: 'All types customers',
+    value: 'all'
+  },
   // Overview page 
 
-  visit_count: []
+  visit_count: [],
+  visit_count_compare: [],
+  all_time_visit_count: [],
+  all_customer_count: [],
 }
 
 const reducer = (state = initialState, action) => {
@@ -61,10 +68,30 @@ const reducer = (state = initialState, action) => {
         ...state,
         shop: action.payload
       }
+    case 'SET_CUSTOMER_TYPE': 
+      return {
+        ...state,
+        customer_type: action.payload
+      }
     case 'SET_VISIT_COUNT': 
       return {
         ...state,
         visit_count: [...action.payload]
+      }
+    case 'SET_VISIT_COUNT_COMPARE': 
+      return {
+        ...state,
+        visit_count_compare: [...action.payload]
+      }
+    case 'SET_ALL_TIME_VISIT_COUNT': 
+      return {
+        ...state,
+        all_time_visit_count: [...action.payload]
+      }
+    case 'SET_ALL_CUSTOMER_COUNT': 
+      return {
+        ...state,
+        all_customer_count: [...action.payload]
       }
     default: 
       return state

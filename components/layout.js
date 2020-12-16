@@ -63,16 +63,6 @@ const Layout = ({ children }) => {
                     <div className="field__wrap"><input className="field__input" type="text" /></div>
                   </div>
                   <div className="popup__field field">
-                    <div className="field__label">Location</div>
-                    <div className="field__wrap"><input className="field__input" type="text" /></div>
-                  </div>
-                </div>
-                <div className="popup__row">
-                  <div className="popup__field field">
-                    <div className="field__label">Role</div>
-                    <div className="field__wrap"><input className="field__input" type="text" /></div>
-                  </div>
-                  <div className="popup__field field">
                     <div className="field__label">Team</div>
                     <div className="field__wrap"><input className="field__input" type="text" /></div>
                   </div>

@@ -284,7 +284,8 @@ const Schedules = () => {
                             <use xlinkHref="img/sprite.svg#icon-wallet" />
                           </svg></div>
                         <div className="tabs__text">Trending</div>
-                      </a></div>
+                      </a>
+                    </div>
                   </div>
                 </div>
               </div>

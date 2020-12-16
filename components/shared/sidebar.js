@@ -106,8 +106,13 @@ const Sidebar = () => {
     
     $('.tabs__link').on('click', function (e) {
         e.preventDefault();
+        var t = $(this).attr('href');
         $('.tabs__link').removeClass('active');
         $(this).toggleClass('active');
+        if($(this).hasClass('active')){
+          $('.overview-widget').hide();
+          $(t).fadeIn('slow');
+        }
     });
     
     $('.inbox__item').on('click', function () {
