@@ -10,6 +10,8 @@ import Header from '../components/shared/header'
 import Shopselect from '../components/widgets/shopselect'
 import Customertype from '../components/widgets/customertype'
 
+import CustomerDetails from '../components/widgets/customerDetails'
+
 const Customers = () => {
   const API_ENDPOINT = useSelector(state => state.api_endpoint)
   const dispatch = useDispatch()
@@ -237,7 +239,6 @@ const Customers = () => {
                     <div className="products__table">
                       <div className="products__row products__row_head">
                         <div className="products__cell">Customer</div>
-                        <div className="products__cell">Email</div>
                         <div className="products__cell">Phone number</div>
                         <div className="products__cell">Total visits</div>
                         <div className="products__cell">First visit</div>
@@ -252,13 +253,10 @@ const Customers = () => {
                               <div className="products__cell">
                                 <a className="products__item">
                                   <div className="products__details">
-                                    <div className="products__title title">{ item.name }</div>
-                                    <div className={item.spoonity_id ? 'products__info caption color-pink' : 'products__info caption color-purple'}>{ item.spoonity_id ? `Spoonity ID: ${item.spoonity_id}` : `Gfo ID: ${item.gfo_id}` }</div>
+                                    <div className="products__title title">{ item.name ? item.name : 'Unknown' }</div>
+                                    <div className='products__info caption color-purple'>{ item.email ? item.email : 'Unknown' }</div>
                                   </div>
                                 </a>
-                              </div>
-                              <div className="products__cell">
-                                <div className="products__payment">{ item.email }</div>
                               </div>
                               <div className="products__cell">
                                 <div className="products__color">
@@ -400,6 +398,11 @@ const Customers = () => {
               </div>
             </div>
             <div className="popup__text">Customer counts and their visits details of all time.</div>
+          </div>
+        </div>
+        <div className="popup mfp-hide" id="popup-customer-details">
+          <div className="popup__form">
+            Here goes customer details
           </div>
         </div>
       </Layout>

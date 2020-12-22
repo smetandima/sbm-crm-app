@@ -3901,7 +3901,7 @@ body.dark .products__row_head .products__cell{
 }
 
 .products_main .products__cell:nth-child(2) {
-  font-size: 0;
+  /* font-size: 0; */
 }
 
 .products_main .products__col:first-child {
